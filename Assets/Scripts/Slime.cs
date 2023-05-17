@@ -46,12 +46,24 @@ public class Slime : AbstractEnemy
             else
             { 
                 HitCharacter();
-                transform.position = Vector3.MoveTowards(transform.position, character.transform.position*-2 , speed * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, character.transform.position*-10 , speed * Time.deltaTime);
               
             }
+          
         }
         }
-    
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.name == "Character")
+       {
+            Vector2 dirrection = (Vector2.up * (character.transform.position.y - transform.position.y) + Vector2.right * ((character.transform.position.x - transform.position.x)));
+            //rb.AddForce(dirrection * -1 * speed*2 * Time.deltaTime, ForceMode2D.Impulse);
+            transform.position = Vector3.MoveTowards(transform.position, dirrection*-2, speed * Time.deltaTime);
+        }
+
+
+    }
 
     protected void HitCharacter()
     {

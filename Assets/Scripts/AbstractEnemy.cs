@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AbstractEnemy : MonoBehaviour
 {
-    private int health;
+    public int health;
     public GameObject[] point = new GameObject[9];
     public int action, rand = 0;
     public float speed = 1f;
@@ -12,10 +12,12 @@ public class AbstractEnemy : MonoBehaviour
     public float fieldOdView = 2f;
     public float privateDistance = 0.5f;
     protected float timer;
+    //protected Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
     {
-        if(character== null)
+        //rb = GetComponent<Rigidbody2D>();
+        if (character== null)
         {
             character = GameObject.Find("Character").GetComponent<Character>();
         }

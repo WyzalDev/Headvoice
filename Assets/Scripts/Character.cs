@@ -4,29 +4,39 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-
+    public GameObject Boolet;
     [Range(0,10)]
     private int health = 10;
     [Range(0,5)]
     private int armour = 5;
-    private int baseDamage = 10;
-
+    public int baseDamage = 10;
+    protected float timer;
     //In that range character start tracking enemies
     [Header("Enemy Tracking")]
     [SerializeField]
     private float scanRange = 5;
-
+    public bool isSword=true;
+    public List<Collider2D> objects;
     [SerializeField]
     private Weapon weapon;
 
     private void FixedUpdate() {
-        List<Collider2D> objects = scanEnemies();
+        if (Input.GetKeyUp(KeyCode.R))
+        {
+            isSword = !isSword;
+        }
+        objects = scanEnemies();
+        if (!isSword && objects.Count>0) {
+            ShootEnemy();
+
+        }
         string log = "";
         foreach (Collider2D item in objects)
         {
             log+= item.gameObject.name + "      ";
         }
         Debug.Log(log);
+
     }
 
     public void takeDamage() {
@@ -52,6 +62,32 @@ public class Character : MonoBehaviour
 
     private bool isHaveEnemyComponent(Collider2D collider) {
         return collider.gameObject.GetComponent<AbstractEnemy>() != null;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+       if (collision.tag == "Enemy")
+        {
+
+            collision.gameObject.GetComponent<AbstractEnemy>().takeDamage(baseDamage);
+        }
+        
+    }
+
+    private void ShootEnemy()
+    {
+        if (timer >= 0)
+        {
+            timer -= Time.deltaTime;
+
+        }
+        else
+        {
+            timer = 2;
+            Instantiate(Boolet, transform.position, Quaternion.identity);
+
+        }
+
     }
 
 
