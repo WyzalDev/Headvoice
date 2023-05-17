@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AbstractEnemy : MonoBehaviour
 {
+    private int health;
     public GameObject[] point = new GameObject[9];
     public int action, rand = 0;
     public float speed = 1f;
@@ -29,6 +30,19 @@ public class AbstractEnemy : MonoBehaviour
     protected void HitCharacter()
     {
 
+    }
+
+    public void takeDamage(int damage)
+    {
+        health -= damage;
+        if(health <= 0){
+            onKill();
+        }
+    } 
+
+    public void onKill()
+    {
+        Destroy(gameObject);
     }
 
     private void onCollisionEnter2D(Collision2D collision)

@@ -44,8 +44,10 @@ public class Slime : AbstractEnemy
                 transform.position = Vector3.MoveTowards(transform.position, character.transform.position, speed * Time.deltaTime);
             }
             else
-            {
+            { 
                 HitCharacter();
+                transform.position = Vector3.MoveTowards(transform.position, character.transform.position*-2 , speed * Time.deltaTime);
+              
             }
         }
         }
@@ -65,5 +67,7 @@ public class Slime : AbstractEnemy
         }
         
     }
+
+    
 
    }
