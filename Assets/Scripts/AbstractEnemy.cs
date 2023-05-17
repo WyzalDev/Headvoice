@@ -20,8 +20,10 @@ public class AbstractEnemy : MonoBehaviour
 
     void Update()
     {
-        
-        if (Vector2.Distance(new Vector2(transform.position.x, transform.position.y), new Vector2(character.transform.position.x, character.transform.position.y)) <= fieldOdView)
+        float distance = Vector2.Distance(new Vector2(transform.position.x, transform.position.y), new Vector2(character.transform.position.x, character.transform.position.y));
+
+
+        if (distance <= fieldOdView)
         {
             transform.position = Vector3.MoveTowards(transform.position, character.transform.position, speed * Time.deltaTime);
 
