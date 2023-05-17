@@ -7,8 +7,10 @@ public class AbstractEnemy : MonoBehaviour
     public GameObject[] point = new GameObject[9];
     public int action, rand = 0;
     public float speed = 1f;
-    private Character character;
-    public int fieldOdView = 2;
+    protected Character character;
+    public float fieldOdView = 2f;
+    public float privateDistance = 0.5f;
+    protected float timer;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,35 +22,13 @@ public class AbstractEnemy : MonoBehaviour
 
     void Update()
     {
-        float distance = Vector2.Distance(new Vector2(transform.position.x, transform.position.y), new Vector2(character.transform.position.x, character.transform.position.y));
-
-
-        if (distance <= fieldOdView)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, character.transform.position, speed * Time.deltaTime);
-
-        } else {
-            if (action == 0)
-        {
-            if (point[rand].transform.parent != null)
-            {
-                for (int i = 0; i < point.Length; i++)
-                {
-                    point[i].transform.parent = null;
-                }
-            }
-            if (transform.position != point[rand].transform.position)
-            {
-                transform.position = Vector3.MoveTowards(transform.position, point[rand].transform.position, speed * Time.deltaTime);
-            }
-            else
-            {
-                rand = Random.Range(0, 9);
-            }
-
-        } }
 
         
+    }
+
+    protected void HitCharacter()
+    {
+
     }
 
     private void onCollisionEnter2D(Collision2D collision)
