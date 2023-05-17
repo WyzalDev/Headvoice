@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public sealed class Character : MonoBehaviour
+public class Character : MonoBehaviour
 {
 
     [Range(0,10)]
@@ -8,6 +8,7 @@ public sealed class Character : MonoBehaviour
     [Range(0,5)]
     private int armour = 5;
     private int baseDamage = 10;
+    
 
     //In that range character start tracking enemies
     [Header("Enemy Tracking")]
@@ -16,17 +17,6 @@ public sealed class Character : MonoBehaviour
 
     [SerializeField]
     private Weapon weapon;
-
-    private static Character character;
-
-    private Character() {}
- 
-    public static Character getInstance() {
-        if(character==null) {
-            character = new Character();
-        }
-        return character;
-    }
 
     private void FixedUpdate() {
 
