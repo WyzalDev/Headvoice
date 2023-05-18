@@ -8,6 +8,7 @@ TagManager:
   - DialogueBox
   - Enemy
   - EventContainer
+  - Consumable
   layers:
   - Default
   - TransparentFX

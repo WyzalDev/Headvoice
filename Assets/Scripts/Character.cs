@@ -7,9 +7,7 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
     public GameObject Boolet;
-    [Range(0,10)]
     private int health = 10;
-    [Range(0,5)]
     private int armour = 5;
     public int baseDamage = 10;
     protected float timer;
@@ -44,6 +42,11 @@ public class Character : MonoBehaviour
 
     public int getArmour(){
         return armour;
+    }
+
+    public void Heal(int healValue) {
+        health += healValue;
+        if (health>10) health = 10;
     }
 
     void Start() {
@@ -113,6 +116,10 @@ public class Character : MonoBehaviour
         return collider.gameObject.GetComponent<AbstractEnemy>() != null;
     }
 
+    private void OnCollisionEnter2D(Collision2D collision2D) {
+        
+    }
+
     private void OnTriggerStay2D(Collider2D collision)
     {
        if (collision.tag == "Enemy")
@@ -131,6 +138,13 @@ public class Character : MonoBehaviour
 
             }
             
+        }
+
+        if (collision.tag == "Consumable") {
+            Debug.Log("enter in collision fields");
+            Consumable consumable = collision.gameObject.GetComponent<Consumable>();
+            consumable.consume();
+            Destroy(consumable.gameObject);
         }
         
     }
