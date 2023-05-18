@@ -248,7 +248,7 @@ MonoBehaviour:
   rand: 0
   speed: 0.5
   fieldOdView: 3
-  privateDistance: 1
+  privateDistance: 2
   Boolet: {fileID: 2949807700178260257, guid: 8b2b4649b1f7c9d46a27d6f9bbd30968, type: 3}
 --- !u!61 &6279563197267730610
 BoxCollider2D:

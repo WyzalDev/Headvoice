@@ -53,6 +53,7 @@ public class Character : MonoBehaviour
     }
 
     private void FixedUpdate() {
+        timer -= Time.deltaTime;
         if (Input.GetKeyUp(KeyCode.R))
         {
             isSword = !isSword;
@@ -96,7 +97,7 @@ public class Character : MonoBehaviour
         return collider.gameObject.GetComponent<AbstractEnemy>() != null;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
        if (collision.tag == "Enemy")
         {
@@ -107,7 +108,7 @@ public class Character : MonoBehaviour
             }
             else
             {
-                timer = 1;
+                timer = 2;
                 animator.SetTrigger("attack");
 
                 collision.gameObject.GetComponent<AbstractEnemy>().takeDamage(baseDamage);

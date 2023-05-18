@@ -46,11 +46,24 @@ public class Slime : AbstractEnemy
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
+       
         if (collision.name == "Character")
         {
+           if (timer >= 0)
+        {
+            timer -= Time.deltaTime;
+
+        }
+        else
+        {
+            timer = 2;
+            //animator.SetTrigger("attack");
+
             collision.gameObject.GetComponent<Character>().takeDamage();
+
+        } 
         }
 
 
