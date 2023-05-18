@@ -6,6 +6,8 @@ TagManager:
   tags:
   - DialogueWindow
   - DialogueBox
+  - Enemy
+  - EventContainer
   layers:
   - Default
   - TransparentFX

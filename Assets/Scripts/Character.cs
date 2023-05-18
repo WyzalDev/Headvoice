@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro; 
+using UnityEngine.UI;
 using UnityEngine;
 
 public class Character : MonoBehaviour
@@ -12,24 +14,39 @@ public class Character : MonoBehaviour
     public int baseDamage = 10;
     protected float timer;
     //In that range character start tracking enemies
-    [Header("Enemy Tracking")]
+    [Header("Tracking")]
     [SerializeField]
-    private float scanRange = 5;
+    private float scanRange = 5f;
+
+    [SerializeField]
+    private float scanChestRange = 1f;
     public bool isSword=true;
     public List<Collider2D> objects;
     [SerializeField]
     private Weapon weapon;
     private GameObject dialoguebox;
+    private GameObject dialogueWindow;
     private bool isCoroutineStarted = false;
 
+    public static List<string> dialogueQueue;
+
     void Start() {
+        dialogueQueue = new List<string>{"Something"};
         dialoguebox = GameObject.FindGameObjectWithTag("DialogueBox");
+        dialogueWindow = GameObject.FindGameObjectWithTag("DialogueWindow");
+    }
+
+    public List<GameObject> getDialogueStuff() {
+        return new List<GameObject>{dialoguebox, dialogueWindow};
     }
 
     void Update() {
 
-        if(dialoguebox.activeSelf && !isCoroutineStarted) {
+        if(dialogueQueue.Count > 0 && !isCoroutineStarted) {
+            dialoguebox.SetActive(true);
             isCoroutineStarted = true;
+            dialogueWindow.GetComponent<TMP_Text>().text = dialogueQueue[0];
+            dialogueQueue.RemoveAt(0);
             StartCoroutine(DialogueBoxAutoTimeDisable());
         }
     }
@@ -73,7 +90,7 @@ public class Character : MonoBehaviour
         colliders.RemoveAll(item => !isHaveEnemyComponent(item));
         return colliders;
     }
-
+    
     private bool isHaveEnemyComponent(Collider2D collider) {
         return collider.gameObject.GetComponent<AbstractEnemy>() != null;
     }
@@ -82,7 +99,6 @@ public class Character : MonoBehaviour
     {
        if (collision.tag == "Enemy")
         {
-
             collision.gameObject.GetComponent<AbstractEnemy>().takeDamage(baseDamage);
         }
         
@@ -105,7 +121,7 @@ public class Character : MonoBehaviour
     }
 
     IEnumerator DialogueBoxAutoTimeDisable(){
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(2f);
         dialoguebox.SetActive(false);
         isCoroutineStarted = false;
     }

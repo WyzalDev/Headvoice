@@ -15,13 +15,18 @@ public class ObjectsOfInterest : MonoBehaviour
 
     private GameObject dialoguebox;
 
+    private EventsContainer eventsContainer;
+
     [SerializeField]
-    private float distanceToEnableButtons = 0.25f;
-    // Start is called before the first frame update
+    private float distanceToEnableButtons = 1f;
+
+    public static Vector3 LastDestroyedObjectPosition = Vector3.zero;
+    
+    
     void Start()
     {
-        dialoguebox = GameObject.FindGameObjectWithTag("DialogueBox");
         character = GameObject.Find("Character").GetComponent<Character>();
+        eventsContainer = GameObject.Find("EventController").GetComponent<EventsContainer>();
     }
 
     // Update is called once per frame
@@ -36,25 +41,35 @@ public class ObjectsOfInterest : MonoBehaviour
 
     void checkIfEPressed() {
         if(Input.GetKeyDown(KeyCode.E)) {
+            LastDestroyedObjectPosition = gameObject.transform.position;
+            eventsContainer.startRandomEvent();
             Destroy(gameObject);
         }
     }
 
     void checkIfQPressed() {
         if(Input.GetKeyDown(KeyCode.Q)) {
-            dialoguebox.SetActive(true);
-            GameObject.FindGameObjectWithTag("DialogueWindow").GetComponent<TMP_Text>().text = description;
+            bool isAlreadyHasInQueue = false;
+            foreach (string item in Character.dialogueQueue)
+            {
+                if(description.Equals(item)) {
+                    isAlreadyHasInQueue = true;
+                    break;
+                }    
+            }
+            if(!isAlreadyHasInQueue){
+                Character.dialogueQueue.Add(description);
+            }
         }
     }
 
     bool enableButtonIfPlayerNear() {
-        if (Vector2.Distance(character.transform.position, transform.position)<=distanceToEnableButtons && !dialoguebox.activeSelf) {
-            
+        if (Vector2.Distance(character.transform.position, transform.position)<=distanceToEnableButtons) {
             return true;
         } 
-        if (Vector2.Distance(character.transform.position, transform.position)>distanceToEnableButtons && dialoguebox.activeSelf) {
+        if (Vector2.Distance(character.transform.position, transform.position)>distanceToEnableButtons) {
             return false;
         }
-        return dialoguebox.activeSelf;
+        return false;
     }
 }
