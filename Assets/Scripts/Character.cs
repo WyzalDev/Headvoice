@@ -100,9 +100,20 @@ public class Character : MonoBehaviour
     {
        if (collision.tag == "Enemy")
         {
-            animator.SetTrigger("attack");
+            if (timer >= 0)
+            {
+                timer -= Time.deltaTime;
 
-            collision.gameObject.GetComponent<AbstractEnemy>().takeDamage(baseDamage);
+            }
+            else
+            {
+                timer = 1;
+                animator.SetTrigger("attack");
+
+                collision.gameObject.GetComponent<AbstractEnemy>().takeDamage(baseDamage);
+
+            }
+            
         }
         
     }
