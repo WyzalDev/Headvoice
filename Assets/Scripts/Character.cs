@@ -29,8 +29,23 @@ public class Character : MonoBehaviour
     private bool isCoroutineStarted = false;
 
     public static List<string> dialogueQueue;
-
     public Animator animator;
+    
+    [SerializeField]
+    private int mood = 50;
+
+    public int getMood() {
+        return mood;
+    }
+
+    public int getHealth(){
+        return health;
+    }
+
+    public int getArmour(){
+        return armour;
+    }
+
     void Start() {
         dialogueQueue = new List<string>{"Something"};
         dialoguebox = GameObject.FindGameObjectWithTag("DialogueBox");
@@ -42,7 +57,6 @@ public class Character : MonoBehaviour
     }
 
     void Update() {
-
         if(dialogueQueue.Count > 0 && !isCoroutineStarted) {
             dialoguebox.SetActive(true);
             isCoroutineStarted = true;
@@ -50,6 +64,7 @@ public class Character : MonoBehaviour
             dialogueQueue.RemoveAt(0);
             StartCoroutine(DialogueBoxAutoTimeDisable());
         }
+        checkMood();
     }
 
     private void FixedUpdate() {
@@ -63,12 +78,12 @@ public class Character : MonoBehaviour
             ShootEnemy();
 
         }
-        string log = "";
-        foreach (Collider2D item in objects)
-        {
-            log+= item.gameObject.name + "      ";
-        }
-        Debug.Log(log);
+        // string log = "";
+        // foreach (Collider2D item in objects)
+        // {
+        //     log+= item.gameObject.name + "      ";
+        // }
+        // Debug.Log(log);
         //animator.SetTrigger("isRunning");
     }
 
@@ -132,6 +147,10 @@ public class Character : MonoBehaviour
             Instantiate(Boolet, transform.position, Quaternion.identity);
 
         }
+
+    }
+
+    private void checkMood() {
 
     }
 
