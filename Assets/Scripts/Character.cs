@@ -19,6 +19,20 @@ public class Character : MonoBehaviour
     public List<Collider2D> objects;
     [SerializeField]
     private Weapon weapon;
+    private GameObject dialoguebox;
+    private bool isCoroutineStarted = false;
+
+    void Start() {
+        dialoguebox = GameObject.FindGameObjectWithTag("DialogueBox");
+    }
+
+    void Update() {
+
+        if(dialoguebox.activeSelf && !isCoroutineStarted) {
+            isCoroutineStarted = true;
+            StartCoroutine(DialogueBoxAutoTimeDisable());
+        }
+    }
 
     private void FixedUpdate() {
         if (Input.GetKeyUp(KeyCode.R))
@@ -90,5 +104,10 @@ public class Character : MonoBehaviour
 
     }
 
+    IEnumerator DialogueBoxAutoTimeDisable(){
+        yield return new WaitForSeconds(2);
+        dialoguebox.SetActive(false);
+        isCoroutineStarted = false;
+    }
 
 }
