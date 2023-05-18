@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
 
-public class Spider : AbstractEnemy
+public class Spider      : AbstractEnemy
 {
     public GameObject Boolet;
     public void Update()

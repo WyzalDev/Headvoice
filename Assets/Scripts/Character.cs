@@ -30,6 +30,7 @@ public class Character : MonoBehaviour
 
     public static List<string> dialogueQueue;
 
+    public Animator animator;
     void Start() {
         dialogueQueue = new List<string>{"Something"};
         dialoguebox = GameObject.FindGameObjectWithTag("DialogueBox");
@@ -67,7 +68,7 @@ public class Character : MonoBehaviour
             log+= item.gameObject.name + "      ";
         }
         Debug.Log(log);
-
+        //animator.SetTrigger("isRunning");
     }
 
     public void takeDamage() {
@@ -99,6 +100,8 @@ public class Character : MonoBehaviour
     {
        if (collision.tag == "Enemy")
         {
+            animator.SetTrigger("attack");
+
             collision.gameObject.GetComponent<AbstractEnemy>().takeDamage(baseDamage);
         }
         
