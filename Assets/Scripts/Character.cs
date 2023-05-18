@@ -73,6 +73,7 @@ public class Character : MonoBehaviour
         {
             isSword = !isSword;
         }
+        
         objects = scanEnemies();
         if (!isSword && objects.Count>0) {
             ShootEnemy();
