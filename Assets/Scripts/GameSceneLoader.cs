@@ -40,7 +40,7 @@ public class GameSceneLoader : MonoBehaviour
     }
 
     IEnumerator delaySplashScreen(){
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(10f);
         isEnd = true;
     }
 
