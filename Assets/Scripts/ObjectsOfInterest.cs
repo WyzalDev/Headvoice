@@ -11,7 +11,13 @@ public class ObjectsOfInterest : MonoBehaviour
     private bool isButtonsActive;
 
     [SerializeField]
-    private string description;
+    private string description1;
+
+    [SerializeField]
+    private string description2;
+
+    [SerializeField]
+    private string description3;
 
     private GameObject dialoguebox;
 
@@ -49,17 +55,7 @@ public class ObjectsOfInterest : MonoBehaviour
 
     void checkIfQPressed() {
         if(Input.GetKeyDown(KeyCode.Q)) {
-            bool isAlreadyHasInQueue = false;
-            foreach (string item in Character.dialogueQueue)
-            {
-                if(description.Equals(item)) {
-                    isAlreadyHasInQueue = true;
-                    break;
-                }    
-            }
-            if(!isAlreadyHasInQueue){
-                Character.dialogueQueue.Add(description);
-            }
+            Character.addRandomDialogueFromList(new List<string>{description1, description2, description3});
         }
     }
 

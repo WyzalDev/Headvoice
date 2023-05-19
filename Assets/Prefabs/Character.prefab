@@ -269,6 +269,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Boolet: {fileID: 2937092631550152228, guid: 2750a20309913c64ea1eae77de07e592, type: 3}
+  sceneEnder: {fileID: 1115013143094507265, guid: b5b8f462424aaa44483c696405030375, type: 3}
   baseDamage: 10
   scanRange: 5
   scanChestRange: 1

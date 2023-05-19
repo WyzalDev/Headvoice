@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnConsumableEvent : Event
@@ -11,6 +13,15 @@ public class SpawnConsumableEvent : Event
 
     [SerializeField]
     private GameObject hitFruitPrefab;
+
+    [SerializeField]
+    private string description1;
+
+    [SerializeField]
+    private string description2;
+
+    [SerializeField]
+    private string description3;
 
     public override void doScenaria()
     {
@@ -38,6 +49,8 @@ public class SpawnConsumableEvent : Event
         } else {
             GameObject.Find("Character").GetComponent<Character>().increaseMood(5);
         }
+
+        Character.addRandomDialogueFromList(new List<string>{description1, description2, description3});
 
         Instantiate(prefabToInstantiate,
                     ObjectsOfInterest.LastDestroyedObjectPosition,

@@ -7,6 +7,9 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
     public GameObject Boolet;
+
+    [SerializeField]
+    private GameObject sceneEnder;
     private int health = 10;
     private int armour = 5;
     public int baseDamage = 10;
@@ -89,9 +92,10 @@ public class Character : MonoBehaviour
         if (armour>5) armour = 5;
     }
     void Start() {
-        dialogueQueue = new List<string>{"Something"};
+        dialogueQueue = new List<string>{};
         dialoguebox = GameObject.FindGameObjectWithTag("DialogueBox");
         dialogueWindow = GameObject.FindGameObjectWithTag("DialogueWindow");
+        dialoguebox.SetActive(false);
         rigidbody = GetComponent<Rigidbody2D>();
     }
 
@@ -137,7 +141,7 @@ public class Character : MonoBehaviour
         } else if(health>0) {
             health--; 
         } else {
-            //TODO ENDGAME
+            Instantiate(sceneEnder);
         }
     }
 
@@ -244,6 +248,21 @@ public class Character : MonoBehaviour
         }
                
         isConsumableDelayStarted = false;
+    }
+
+    public static void addRandomDialogueFromList(List<string> dialogues) {
+        bool isAlreadyHasInQueue = false;
+        string description = dialogues[Random.Range(0,dialogues.Count-1)];
+        foreach (string item in dialogueQueue)
+        {
+            if(description.Equals(item)) {
+                isAlreadyHasInQueue = true;
+                break;
+            }    
+        }
+        if(!isAlreadyHasInQueue){
+            dialogueQueue.Add(description);
+        }
     }
 
 }

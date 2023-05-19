@@ -45,3 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kingkongPrefab: {fileID: 3595699791693250197, guid: 008d3fc741e35e5448a147770a9e59c9, type: 3}
+  description1: Someone big is coming!
+  description2: Big and wooly, I've never seen such ... creatures.
+  description3: Too big, too strong.

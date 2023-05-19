@@ -124,5 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de6698e6759319e4ab23b4fa4834eba5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: something new
+  description1: Hole with tongues, pheeee.
+  description2: Well what is here. A HOLE.
+  description3: There is someone down there?
   distanceToEnableButtons: 2

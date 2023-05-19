@@ -47,3 +47,6 @@ MonoBehaviour:
   healthPrefab: {fileID: 1590389326547817505, guid: 7871e2a461747f74e8a2ef192b439177, type: 3}
   armourPrefab: {fileID: 2722102084023340442, guid: 2f81bc855602366499145d30c60cc2d3, type: 3}
   hitFruitPrefab: {fileID: 1417916254539690060, guid: afd332a61cdf3f349b884b29a6cf30a9, type: 3}
+  description1: Ehe something strange, is it for me?
+  description2: New treasure in my pocket, hehe.
+  description3: What if i eat those ...mhmh thing?

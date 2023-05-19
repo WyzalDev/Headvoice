@@ -6,29 +6,25 @@ using UnityEngine.UI;
 
 public class SpawnEnemyEvent : Event
 {
-    List<string> randomDialogs = new List<string>{"something1","something2","something3"};
-
     [SerializeField]
     private GameObject spiderPrefab;
     [SerializeField]
     private GameObject slimePrefab;
 
+    [SerializeField]
+    private string description1;
+
+    [SerializeField]
+    private string description2;
+
+    [SerializeField]
+    private string description3;
+
 
     public override void doScenaria()
     {
         //Send random dialog to character dialogue box
-        int randomNumber = Random.Range(0,randomDialogs.Count);
-        bool isAlreadyHasInQueue = false;
-        foreach (string item in Character.dialogueQueue)
-        {
-            if(randomDialogs[randomNumber].Equals(item)) {
-                isAlreadyHasInQueue = true;
-                break;
-            }    
-        }
-        if(!isAlreadyHasInQueue){
-            Character.dialogueQueue.Add(randomDialogs[randomNumber]);
-        }
+        Character.addRandomDialogueFromList(new List<string>{description1, description2, description3});
         // GameObject dialoguebox = GameObject.Find("Character").GetComponent<Character>().getDialogueStuff()[0];
         // dialoguebox.SetActive(true);
         // GameObject.FindGameObjectWithTag("DialogueWindow").GetComponent<TMP_Text>().text = randomDialogs[randomNumber];

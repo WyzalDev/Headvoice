@@ -46,3 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spiderPrefab: {fileID: 4116794445391550230, guid: dec1c20862349174f928d2c5c4d7ca4d, type: 3}
   slimePrefab: {fileID: 6427045152124173856, guid: 50a1492785761fb45aff081e5599d611, type: 3}
+  description1: Ambush! Ambush!
+  description2: Why? Just ...... WHY?
+  description3: AAAAAAAAHHhhh!
