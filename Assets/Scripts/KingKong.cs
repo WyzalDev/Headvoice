@@ -12,7 +12,7 @@ public class KingKong : AbstractEnemy
     public float timerForBust=0.5f;
     public float reloadTimer = 7f;
     private Vector2 boostDirrection;
-
+    private bool isHitAfterBoost;
     public void Update()
     {
         float distance = Vector2.Distance(new Vector2(transform.position.x, transform.position.y), new Vector2(character.transform.position.x, character.transform.position.y));
@@ -35,19 +35,9 @@ public class KingKong : AbstractEnemy
 
         if (collision.name == "Character")
         {
-            if (timer >= 0)
-            {
-                timer -= Time.deltaTime;
-
-            }
-            else
-            {
-                timer = 2;
-                //animator.SetTrigger("attack");
-
+            
                 collision.gameObject.GetComponent<Character>().takeDamage();
-
-            }
+              
         }
 
     }

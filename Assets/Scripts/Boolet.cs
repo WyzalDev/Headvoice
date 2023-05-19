@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Boolet : AbstractProjectTile
 {
+    private bool flag=true;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,10 +27,11 @@ public class Boolet : AbstractProjectTile
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.name == "Character")
+        if (collision.name == "Character" && flag)
         {
             Destroy(gameObject);
-            GameObject.Find("Character").GetComponent<Character>().takeDamage();
+            collision.gameObject.GetComponent<Character>().takeDamage();
+            flag = false;
         }
         DestroyProjectTile();
 
