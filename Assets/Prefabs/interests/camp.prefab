@@ -125,4 +125,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   description: something new
-  distanceToEnableButtons: 1
+  distanceToEnableButtons: 2.5

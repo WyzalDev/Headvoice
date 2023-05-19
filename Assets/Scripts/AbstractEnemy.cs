@@ -45,6 +45,7 @@ public class AbstractEnemy : MonoBehaviour
 
     public virtual void onKill()
     {
+        character.increaseMood(3);
         Destroy(gameObject);
     }
 

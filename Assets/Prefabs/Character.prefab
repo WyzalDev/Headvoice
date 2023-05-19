@@ -10,12 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 9009090779201394250}
   - component: {fileID: 9009090779201394249}
-  - component: {fileID: 9009090779201394248}
   - component: {fileID: 9009090779201394231}
   - component: {fileID: 9009090779201394251}
   - component: {fileID: 9009090779201394252}
-  - component: {fileID: 2803569613209282685}
   - component: {fileID: 7034066455930333737}
+  - component: {fileID: 8958775384932546325}
+  - component: {fileID: 8707807181534270110}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -91,22 +91,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!70 &9009090779201394248
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9009090779201394230}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.375, y: 0.555}
-  m_Direction: 0
 --- !u!50 &9009090779201394231
 Rigidbody2D:
   serializedVersion: 4
@@ -161,23 +145,13 @@ MonoBehaviour:
   isSword: 1
   objects: []
   weapon: {fileID: 0}
+  maxDelay: 3
+  minDelay: 2
+  randomConsumableDelay: 2
+  maxForce: 4000
+  minForce: 5000
   animator: {fileID: 3120387839745197103}
---- !u!70 &2803569613209282685
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9009090779201394230}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.375, y: 0.555}
-  m_Direction: 0
+  mood: 50
 --- !u!95 &7034066455930333737
 Animator:
   serializedVersion: 5
@@ -199,6 +173,58 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!61 &8958775384932546325
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9009090779201394230}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.057350934, y: 0.021301806}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.654281, y: 1}
+    newSize: {x: 1.654281, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.6023003, y: 0.7542101}
+  m_EdgeRadius: 0
+--- !u!61 &8707807181534270110
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9009090779201394230}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.057350934, y: 0.021301806}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.654281, y: 1}
+    newSize: {x: 1.654281, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.61, y: 0.76}
+  m_EdgeRadius: 0
 --- !u!1001 &4491898350607207338
 PrefabInstance:
   m_ObjectHideFlags: 0

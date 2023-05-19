@@ -13,6 +13,7 @@ public class SpawnEnemyEvent : Event
     [SerializeField]
     private GameObject slimePrefab;
 
+
     public override void doScenaria()
     {
         //Send random dialog to character dialogue box
@@ -38,6 +39,7 @@ public class SpawnEnemyEvent : Event
         if(randomNumberOfSlimes == 0 && randomNumberOfSpiders == 0) {
             randomNumberOfSpiders = 1;
         }
+        GameObject.Find("Character").GetComponent<Character>().decreaseMood((randomNumberOfSlimes+randomNumberOfSpiders+2)*5);
         Vector3 lastObjectPosition = ObjectsOfInterest.LastDestroyedObjectPosition;
         //slime cycle
         for(int i=0; i<=randomNumberOfSlimes; i++) {

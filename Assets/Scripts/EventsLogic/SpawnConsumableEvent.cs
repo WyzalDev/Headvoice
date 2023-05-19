@@ -12,10 +12,6 @@ public class SpawnConsumableEvent : Event
     [SerializeField]
     private GameObject hitFruitPrefab;
 
-    Character character;
-    void Start() {
-        character = GameObject.Find("Character").GetComponent<Character>();
-    }
     public override void doScenaria()
     {
         int randomPrefab = Random.Range(1,3);
@@ -37,6 +33,12 @@ public class SpawnConsumableEvent : Event
                 break;
             }
         }
+        if(prefabToInstantiate == hitFruitPrefab) {
+            GameObject.Find("Character").GetComponent<Character>().decreaseMood(5);
+        } else {
+            GameObject.Find("Character").GetComponent<Character>().increaseMood(5);
+        }
+
         Instantiate(prefabToInstantiate,
                     ObjectsOfInterest.LastDestroyedObjectPosition,
                     Quaternion.Euler(Vector3.zero));

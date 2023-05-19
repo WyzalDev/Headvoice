@@ -22,18 +22,53 @@ public class Character : MonoBehaviour
     public List<Collider2D> objects;
     [SerializeField]
     private Weapon weapon;
+    [SerializeField]
+    private int maxDelay;
+
+    [SerializeField]
+    private int minDelay;
+    
+    [SerializeField]
+    private int randomConsumableDelay;
+
+    [SerializeField]
+    private int maxForce;
+
+    [SerializeField]
+    private int minForce;
+    private bool isDelayStarted = false;
+
+    private bool isConsumableDelayStarted = false;
     private GameObject dialoguebox;
     private GameObject dialogueWindow;
     private bool isCoroutineStarted = false;
 
     public static List<string> dialogueQueue;
     public Animator animator;
+
+    private Rigidbody2D rigidbody;
     
     [SerializeField]
     private int mood = 50;
 
     public int getMood() {
         return mood;
+    }
+
+    public void decreaseMood(int value) {
+        if(mood <= value) {
+            mood = 0;
+        } else {
+            mood-=value;
+        }
+    }
+
+    public void increaseMood(int value) {
+        if(mood-100 + value >= 0) {
+            mood = 100;
+        } else {
+            mood+=value;
+        }
     }
 
     public int getHealth(){
@@ -57,6 +92,7 @@ public class Character : MonoBehaviour
         dialogueQueue = new List<string>{"Something"};
         dialoguebox = GameObject.FindGameObjectWithTag("DialogueBox");
         dialogueWindow = GameObject.FindGameObjectWithTag("DialogueWindow");
+        rigidbody = GetComponent<Rigidbody2D>();
     }
 
     public List<GameObject> getDialogueStuff() {
@@ -171,13 +207,43 @@ public class Character : MonoBehaviour
     }
 
     private void checkMood() {
-
+        if(!isDelayStarted && mood < 30) {
+            isDelayStarted = true;
+            StartCoroutine(MovementDiscomfortTick());
+        } else if(!isConsumableDelayStarted && mood > 70) {
+            isConsumableDelayStarted = true;
+            StartCoroutine(GetConsumableTick());
+        }
     }
 
     IEnumerator DialogueBoxAutoTimeDisable(){
         yield return new WaitForSeconds(2f);
         dialoguebox.SetActive(false);
         isCoroutineStarted = false;
+    }
+
+    IEnumerator MovementDiscomfortTick(){
+        int randomDelay = Random.Range(maxDelay, minDelay);
+        yield return new WaitForSeconds(randomDelay);
+        int randomForce = Random.Range(minForce, maxForce);
+        Vector2 input = new Vector2(Random.Range(-1,1) * randomForce,
+                                    Random.Range(-1,1) * randomForce);
+        rigidbody.AddForce(input);
+        isDelayStarted = false;
+    }
+
+    IEnumerator GetConsumableTick(){
+        yield return new WaitForSeconds(randomConsumableDelay);
+        
+        if(armour!=5) {
+            armourRestore(2);
+            dialogueQueue.Add("Some armour, not bad");
+        } else if(health!=10) {
+            Heal(2);
+            dialogueQueue.Add("Hahaha, found some health");
+        }
+               
+        isConsumableDelayStarted = false;
     }
 
 }
