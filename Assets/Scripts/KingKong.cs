@@ -63,4 +63,9 @@ public class KingKong : AbstractEnemy
            }
 
     }
+
+    public override void onKill() {
+        GameObject.Find("EventController").GetComponent<EventsContainer>().refreshKingKongEventCounter();
+        Destroy(gameObject);
+    }
 }

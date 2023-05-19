@@ -43,7 +43,7 @@ public class AbstractEnemy : MonoBehaviour
         }
     } 
 
-    public void onKill()
+    public virtual void onKill()
     {
         Destroy(gameObject);
     }

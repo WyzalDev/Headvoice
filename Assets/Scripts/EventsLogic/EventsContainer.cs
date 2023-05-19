@@ -10,15 +10,28 @@ public class EventsContainer : MonoBehaviour
     [SerializeField]
     private GameObject spawnEnemyEventObject;
 
+    [SerializeField]
+    private GameObject spawnConsumableEventObject;
+
+    [SerializeField]
+    private GameObject kingKongAppearsEventObject;
+
     List<Event> randomEvents;
 
     List<Event> remainingRandomEvents;
 
+    private KingKongAppearsEvent kingKongAppearsEvent;
+
+    private int eventsBeforeKingKong = 5;
+
     void Start() {
-        var spawnEnemyEvent = spawnEnemyEventObject.GetComponent<SpawnEnemyEvent>();
+        SpawnEnemyEvent spawnEnemyEvent = spawnEnemyEventObject.GetComponent<SpawnEnemyEvent>();
+        SpawnConsumableEvent spawnConsumableEvent = spawnConsumableEventObject.GetComponent<SpawnConsumableEvent>();
+        kingKongAppearsEvent = kingKongAppearsEventObject.GetComponent<KingKongAppearsEvent>();
         eventsContainer = new List<GameObject>();
         randomEvents = new List<Event>();
-        randomEvents.Add(spawnEnemyEvent);
+        randomEvents.Add(spawnConsumableEvent);
+        randomEvents.Add(spawnConsumableEvent);
         randomEvents.Add(spawnEnemyEvent);
         randomEvents.Add(spawnEnemyEvent);
         remainingRandomEvents = new List<Event>();
@@ -36,6 +49,7 @@ public class EventsContainer : MonoBehaviour
     public void startRandomEvent() {
         if(remainingRandomEvents.Count == 0) {
             refillRemainingRandomEvents();
+            return;
         }
         int randomNumber = Random.Range(0, remainingRandomEvents.Count);
         GameObject randomEvent = Instantiate(remainingRandomEvents[randomNumber].gameObject);
@@ -44,7 +58,14 @@ public class EventsContainer : MonoBehaviour
     }
 
     private void refillRemainingRandomEvents() {
+        GameObject kingKongCloneEvent = Instantiate(kingKongAppearsEventObject);
+        kingKongCloneEvent.GetComponent<KingKongAppearsEvent>().doScenaria();
+        Destroy(kingKongCloneEvent);
         remainingRandomEvents =  randomEvents.OrderBy( x => Random.value ).ToList();
+    }
+
+    public void refreshKingKongEventCounter() {
+        eventsBeforeKingKong = randomEvents.Count;
     }
     
 }
