@@ -36,7 +36,7 @@ public class GameSceneLoader : MonoBehaviour
         }
     }
     public static void resetScene() {
-        SceneManager.LoadScene("Game");
+        SceneManager.LoadScene("SampleScene");
     }
 
     IEnumerator delaySplashScreen(){

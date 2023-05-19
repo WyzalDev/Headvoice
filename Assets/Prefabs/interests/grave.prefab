@@ -124,5 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de6698e6759319e4ab23b4fa4834eba5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: something new
+  description1: You won't do that, will you?
+  description2: Maybe we just go away?
+  description3: Who is Gontar Wyzal Nehippi?
   distanceToEnableButtons: 1

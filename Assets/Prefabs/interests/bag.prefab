@@ -124,5 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de6698e6759319e4ab23b4fa4834eba5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: something new
+  description1: Bag on the ground, am I lucky?
+  description2: If bag here, then stuff in it is my?
+  description3: Don't pick up things you don't know
   distanceToEnableButtons: 1
