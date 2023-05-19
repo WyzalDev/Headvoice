@@ -233,7 +233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d432783dba5e89c4abbb014a717c750e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 30
   point:
   - {fileID: 3852024108141993855}
   - {fileID: 5977086246204734787}
@@ -249,6 +249,7 @@ MonoBehaviour:
   speed: 0.5
   fieldOdView: 3
   privateDistance: 2
+  animator: {fileID: 0}
   Boolet: {fileID: 2949807700178260257, guid: 8b2b4649b1f7c9d46a27d6f9bbd30968, type: 3}
 --- !u!61 &6279563197267730610
 BoxCollider2D:
