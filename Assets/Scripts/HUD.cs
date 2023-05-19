@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro; 
+using UnityEngine.UI;
 using UnityEngine;
 
 public class HUD : MonoBehaviour
@@ -33,7 +35,8 @@ public class HUD : MonoBehaviour
     [SerializeField]
     GameObject parentMoodBar;
 
-
+    [SerializeField]
+    GameObject kingKongTextBar;
 
     Character character;
 
@@ -88,6 +91,19 @@ public class HUD : MonoBehaviour
             ChangeArmour();
         }
         tryChangeMood();
+        if(isKingKongCounterChanged()) {
+            changeKingKongCounterText();
+        }
+    }
+
+    bool isKingKongCounterChanged() {
+        TMP_Text textComponent = kingKongTextBar.GetComponent<TMP_Text>(); 
+        EventsContainer eventsContainer = GameObject.Find("EventController").GetComponent<EventsContainer>();
+        return !textComponent.text.Equals(eventsContainer.getKingKongAppearCounter().ToString());
+    }
+
+    void changeKingKongCounterText() {
+        kingKongTextBar.GetComponent<TMP_Text>().text = GameObject.Find("EventController").GetComponent<EventsContainer>().getKingKongAppearCounter().ToString();
     }
 
     void tryChangeMood() {

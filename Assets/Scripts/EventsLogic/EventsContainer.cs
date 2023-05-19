@@ -22,7 +22,7 @@ public class EventsContainer : MonoBehaviour
 
     private KingKongAppearsEvent kingKongAppearsEvent;
 
-    private int eventsBeforeKingKong = 5;
+    private int eventsBeforeKingKong;
 
     void Start() {
         SpawnEnemyEvent spawnEnemyEvent = spawnEnemyEventObject.GetComponent<SpawnEnemyEvent>();
@@ -35,6 +35,7 @@ public class EventsContainer : MonoBehaviour
         randomEvents.Add(spawnEnemyEvent);
         randomEvents.Add(spawnEnemyEvent);
         remainingRandomEvents = new List<Event>();
+        refillRemainingRandomEvents();
     }
 
     void Update() { 
@@ -49,19 +50,28 @@ public class EventsContainer : MonoBehaviour
     public void startRandomEvent() {
         if(remainingRandomEvents.Count == 0) {
             refillRemainingRandomEvents();
+            spawnEventKingKong();
             return;
         }
         int randomNumber = Random.Range(0, remainingRandomEvents.Count);
         GameObject randomEvent = Instantiate(remainingRandomEvents[randomNumber].gameObject);
         eventsContainer.Add(randomEvent);
         remainingRandomEvents.RemoveAt(randomNumber);
+        eventsBeforeKingKong = remainingRandomEvents.Count;
     }
 
-    private void refillRemainingRandomEvents() {
+    private void spawnEventKingKong() {
         GameObject kingKongCloneEvent = Instantiate(kingKongAppearsEventObject);
         kingKongCloneEvent.GetComponent<KingKongAppearsEvent>().doScenaria();
         Destroy(kingKongCloneEvent);
+    }
+    private void refillRemainingRandomEvents() {
         remainingRandomEvents =  randomEvents.OrderBy( x => Random.value ).ToList();
+        eventsBeforeKingKong = remainingRandomEvents.Count;
+    }
+
+    public int getKingKongAppearCounter() {
+        return eventsBeforeKingKong;
     }
 
     public void refreshKingKongEventCounter() {
