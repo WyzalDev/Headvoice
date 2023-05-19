@@ -14,7 +14,8 @@ public class KingKong : AbstractEnemy
     public void Update()
     {
         float distance = Vector2.Distance(new Vector2(transform.position.x, transform.position.y), new Vector2(character.transform.position.x, character.transform.position.y));
-
+        animator.SetFloat("X", transform.position.x- character.transform.position.x);
+        animator.SetFloat("Y", transform.position.y - character.transform.position.y);
         
         if (distance > privateDistance)
             {

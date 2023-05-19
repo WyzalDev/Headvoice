@@ -12,6 +12,7 @@ public class AbstractEnemy : MonoBehaviour
     public float fieldOdView = 2f;
     public float privateDistance = 0.5f;
     protected float timer;
+    public Animator animator;
     //protected Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()

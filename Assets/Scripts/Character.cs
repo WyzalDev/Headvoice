@@ -159,6 +159,7 @@ public class Character : MonoBehaviour
         else
         {
             timer = 2;
+            animator.SetTrigger("attack");
             Instantiate(Boolet, transform.position, Quaternion.identity);
 
         }
