@@ -49,6 +49,10 @@ public class Character : MonoBehaviour
         if (health>10) health = 10;
     }
 
+    public void armourRestore(int armourValue) {
+        armour += armourValue;
+        if (armour>5) armour = 5;
+    }
     void Start() {
         dialogueQueue = new List<string>{"Something"};
         dialoguebox = GameObject.FindGameObjectWithTag("DialogueBox");
