@@ -8,8 +8,7 @@ public class Slime : AbstractEnemy
     public void Update()
     {
         float distance = Vector2.Distance(new Vector2(transform.position.x, transform.position.y), new Vector2(character.transform.position.x, character.transform.position.y));
-
-
+        gameObject.GetComponent<SpriteRenderer>().flipX = transform.position.x - character.transform.position.x < 0;
         if (distance <= fieldOdView)
         {
             action = 1;
